@@ -7,6 +7,10 @@ See [CRI](https://github.com/kubernetes/community/blob/master/contributors/desig
 ## Install
 
 ```sh
+# For kubernetes v1.6.x
+pip install cri==0.1.5
+
+# For kubernetes v1.7.x
 pip install cri
 ```
 

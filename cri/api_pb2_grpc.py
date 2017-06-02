@@ -17,92 +17,102 @@ class RuntimeServiceStub(object):
       channel: A grpc.Channel.
     """
     self.Version = channel.unary_unary(
-        '/runtime.RuntimeService/Version',
+        '/v1alpha1.RuntimeService/Version',
         request_serializer=api__pb2.VersionRequest.SerializeToString,
         response_deserializer=api__pb2.VersionResponse.FromString,
         )
     self.RunPodSandbox = channel.unary_unary(
-        '/runtime.RuntimeService/RunPodSandbox',
+        '/v1alpha1.RuntimeService/RunPodSandbox',
         request_serializer=api__pb2.RunPodSandboxRequest.SerializeToString,
         response_deserializer=api__pb2.RunPodSandboxResponse.FromString,
         )
     self.StopPodSandbox = channel.unary_unary(
-        '/runtime.RuntimeService/StopPodSandbox',
+        '/v1alpha1.RuntimeService/StopPodSandbox',
         request_serializer=api__pb2.StopPodSandboxRequest.SerializeToString,
         response_deserializer=api__pb2.StopPodSandboxResponse.FromString,
         )
     self.RemovePodSandbox = channel.unary_unary(
-        '/runtime.RuntimeService/RemovePodSandbox',
+        '/v1alpha1.RuntimeService/RemovePodSandbox',
         request_serializer=api__pb2.RemovePodSandboxRequest.SerializeToString,
         response_deserializer=api__pb2.RemovePodSandboxResponse.FromString,
         )
     self.PodSandboxStatus = channel.unary_unary(
-        '/runtime.RuntimeService/PodSandboxStatus',
+        '/v1alpha1.RuntimeService/PodSandboxStatus',
         request_serializer=api__pb2.PodSandboxStatusRequest.SerializeToString,
         response_deserializer=api__pb2.PodSandboxStatusResponse.FromString,
         )
     self.ListPodSandbox = channel.unary_unary(
-        '/runtime.RuntimeService/ListPodSandbox',
+        '/v1alpha1.RuntimeService/ListPodSandbox',
         request_serializer=api__pb2.ListPodSandboxRequest.SerializeToString,
         response_deserializer=api__pb2.ListPodSandboxResponse.FromString,
         )
     self.CreateContainer = channel.unary_unary(
-        '/runtime.RuntimeService/CreateContainer',
+        '/v1alpha1.RuntimeService/CreateContainer',
         request_serializer=api__pb2.CreateContainerRequest.SerializeToString,
         response_deserializer=api__pb2.CreateContainerResponse.FromString,
         )
     self.StartContainer = channel.unary_unary(
-        '/runtime.RuntimeService/StartContainer',
+        '/v1alpha1.RuntimeService/StartContainer',
         request_serializer=api__pb2.StartContainerRequest.SerializeToString,
         response_deserializer=api__pb2.StartContainerResponse.FromString,
         )
     self.StopContainer = channel.unary_unary(
-        '/runtime.RuntimeService/StopContainer',
+        '/v1alpha1.RuntimeService/StopContainer',
         request_serializer=api__pb2.StopContainerRequest.SerializeToString,
         response_deserializer=api__pb2.StopContainerResponse.FromString,
         )
     self.RemoveContainer = channel.unary_unary(
-        '/runtime.RuntimeService/RemoveContainer',
+        '/v1alpha1.RuntimeService/RemoveContainer',
         request_serializer=api__pb2.RemoveContainerRequest.SerializeToString,
         response_deserializer=api__pb2.RemoveContainerResponse.FromString,
         )
     self.ListContainers = channel.unary_unary(
-        '/runtime.RuntimeService/ListContainers',
+        '/v1alpha1.RuntimeService/ListContainers',
         request_serializer=api__pb2.ListContainersRequest.SerializeToString,
         response_deserializer=api__pb2.ListContainersResponse.FromString,
         )
     self.ContainerStatus = channel.unary_unary(
-        '/runtime.RuntimeService/ContainerStatus',
+        '/v1alpha1.RuntimeService/ContainerStatus',
         request_serializer=api__pb2.ContainerStatusRequest.SerializeToString,
         response_deserializer=api__pb2.ContainerStatusResponse.FromString,
         )
     self.ExecSync = channel.unary_unary(
-        '/runtime.RuntimeService/ExecSync',
+        '/v1alpha1.RuntimeService/ExecSync',
         request_serializer=api__pb2.ExecSyncRequest.SerializeToString,
         response_deserializer=api__pb2.ExecSyncResponse.FromString,
         )
     self.Exec = channel.unary_unary(
-        '/runtime.RuntimeService/Exec',
+        '/v1alpha1.RuntimeService/Exec',
         request_serializer=api__pb2.ExecRequest.SerializeToString,
         response_deserializer=api__pb2.ExecResponse.FromString,
         )
     self.Attach = channel.unary_unary(
-        '/runtime.RuntimeService/Attach',
+        '/v1alpha1.RuntimeService/Attach',
         request_serializer=api__pb2.AttachRequest.SerializeToString,
         response_deserializer=api__pb2.AttachResponse.FromString,
         )
     self.PortForward = channel.unary_unary(
-        '/runtime.RuntimeService/PortForward',
+        '/v1alpha1.RuntimeService/PortForward',
         request_serializer=api__pb2.PortForwardRequest.SerializeToString,
         response_deserializer=api__pb2.PortForwardResponse.FromString,
         )
+    self.ContainerStats = channel.unary_unary(
+        '/v1alpha1.RuntimeService/ContainerStats',
+        request_serializer=api__pb2.ContainerStatsRequest.SerializeToString,
+        response_deserializer=api__pb2.ContainerStatsResponse.FromString,
+        )
+    self.ListContainerStats = channel.unary_unary(
+        '/v1alpha1.RuntimeService/ListContainerStats',
+        request_serializer=api__pb2.ListContainerStatsRequest.SerializeToString,
+        response_deserializer=api__pb2.ListContainerStatsResponse.FromString,
+        )
     self.UpdateRuntimeConfig = channel.unary_unary(
-        '/runtime.RuntimeService/UpdateRuntimeConfig',
+        '/v1alpha1.RuntimeService/UpdateRuntimeConfig',
         request_serializer=api__pb2.UpdateRuntimeConfigRequest.SerializeToString,
         response_deserializer=api__pb2.UpdateRuntimeConfigResponse.FromString,
         )
     self.Status = channel.unary_unary(
-        '/runtime.RuntimeService/Status',
+        '/v1alpha1.RuntimeService/Status',
         request_serializer=api__pb2.StatusRequest.SerializeToString,
         response_deserializer=api__pb2.StatusResponse.FromString,
         )
@@ -153,7 +163,8 @@ class RuntimeServiceServicer(object):
     raise NotImplementedError('Method not implemented!')
 
   def PodSandboxStatus(self, request, context):
-    """PodSandboxStatus returns the status of the PodSandbox.
+    """PodSandboxStatus returns the status of the PodSandbox. If the PodSandbox is not
+    present, returns an error.
     """
     context.set_code(grpc.StatusCode.UNIMPLEMENTED)
     context.set_details('Method not implemented!')
@@ -208,7 +219,8 @@ class RuntimeServiceServicer(object):
     raise NotImplementedError('Method not implemented!')
 
   def ContainerStatus(self, request, context):
-    """ContainerStatus returns status of the container.
+    """ContainerStatus returns status of the container. If the container is not
+    present, returns an error.
     """
     context.set_code(grpc.StatusCode.UNIMPLEMENTED)
     context.set_details('Method not implemented!')
@@ -237,6 +249,21 @@ class RuntimeServiceServicer(object):
 
   def PortForward(self, request, context):
     """PortForward prepares a streaming endpoint to forward ports from a PodSandbox.
+    """
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
+  def ContainerStats(self, request, context):
+    """ContainerStats returns stats of the container. If the container does not
+    exist, the call returns an error.
+    """
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
+  def ListContainerStats(self, request, context):
+    """ListContainerStats returns stats of all running containers.
     """
     context.set_code(grpc.StatusCode.UNIMPLEMENTED)
     context.set_details('Method not implemented!')
@@ -339,6 +366,16 @@ def add_RuntimeServiceServicer_to_server(servicer, server):
           request_deserializer=api__pb2.PortForwardRequest.FromString,
           response_serializer=api__pb2.PortForwardResponse.SerializeToString,
       ),
+      'ContainerStats': grpc.unary_unary_rpc_method_handler(
+          servicer.ContainerStats,
+          request_deserializer=api__pb2.ContainerStatsRequest.FromString,
+          response_serializer=api__pb2.ContainerStatsResponse.SerializeToString,
+      ),
+      'ListContainerStats': grpc.unary_unary_rpc_method_handler(
+          servicer.ListContainerStats,
+          request_deserializer=api__pb2.ListContainerStatsRequest.FromString,
+          response_serializer=api__pb2.ListContainerStatsResponse.SerializeToString,
+      ),
       'UpdateRuntimeConfig': grpc.unary_unary_rpc_method_handler(
           servicer.UpdateRuntimeConfig,
           request_deserializer=api__pb2.UpdateRuntimeConfigRequest.FromString,
@@ -351,7 +388,7 @@ def add_RuntimeServiceServicer_to_server(servicer, server):
       ),
   }
   generic_handler = grpc.method_handlers_generic_handler(
-      'runtime.RuntimeService', rpc_method_handlers)
+      'v1alpha1.RuntimeService', rpc_method_handlers)
   server.add_generic_rpc_handlers((generic_handler,))
 
 
@@ -366,24 +403,29 @@ class ImageServiceStub(object):
       channel: A grpc.Channel.
     """
     self.ListImages = channel.unary_unary(
-        '/runtime.ImageService/ListImages',
+        '/v1alpha1.ImageService/ListImages',
         request_serializer=api__pb2.ListImagesRequest.SerializeToString,
         response_deserializer=api__pb2.ListImagesResponse.FromString,
         )
     self.ImageStatus = channel.unary_unary(
-        '/runtime.ImageService/ImageStatus',
+        '/v1alpha1.ImageService/ImageStatus',
         request_serializer=api__pb2.ImageStatusRequest.SerializeToString,
         response_deserializer=api__pb2.ImageStatusResponse.FromString,
         )
     self.PullImage = channel.unary_unary(
-        '/runtime.ImageService/PullImage',
+        '/v1alpha1.ImageService/PullImage',
         request_serializer=api__pb2.PullImageRequest.SerializeToString,
         response_deserializer=api__pb2.PullImageResponse.FromString,
         )
     self.RemoveImage = channel.unary_unary(
-        '/runtime.ImageService/RemoveImage',
+        '/v1alpha1.ImageService/RemoveImage',
         request_serializer=api__pb2.RemoveImageRequest.SerializeToString,
         response_deserializer=api__pb2.RemoveImageResponse.FromString,
+        )
+    self.ImageFsInfo = channel.unary_unary(
+        '/v1alpha1.ImageService/ImageFsInfo',
+        request_serializer=api__pb2.ImageFsInfoRequest.SerializeToString,
+        response_deserializer=api__pb2.ImageFsInfoResponse.FromString,
         )
 
 
@@ -423,6 +465,13 @@ class ImageServiceServicer(object):
     context.set_details('Method not implemented!')
     raise NotImplementedError('Method not implemented!')
 
+  def ImageFsInfo(self, request, context):
+    """ImageFSInfo returns information of the filesystem that is used to store images.
+    """
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
 
 def add_ImageServiceServicer_to_server(servicer, server):
   rpc_method_handlers = {
@@ -446,7 +495,12 @@ def add_ImageServiceServicer_to_server(servicer, server):
           request_deserializer=api__pb2.RemoveImageRequest.FromString,
           response_serializer=api__pb2.RemoveImageResponse.SerializeToString,
       ),
+      'ImageFsInfo': grpc.unary_unary_rpc_method_handler(
+          servicer.ImageFsInfo,
+          request_deserializer=api__pb2.ImageFsInfoRequest.FromString,
+          response_serializer=api__pb2.ImageFsInfoResponse.SerializeToString,
+      ),
   }
   generic_handler = grpc.method_handlers_generic_handler(
-      'runtime.ImageService', rpc_method_handlers)
+      'v1alpha1.ImageService', rpc_method_handlers)
   server.add_generic_rpc_handlers((generic_handler,))
