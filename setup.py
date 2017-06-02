@@ -4,7 +4,7 @@ setup(
     name="cri",
     packages=['cri'],
     scripts=['bin/cri'],
-    version='0.1.5',
+    version='0.2.0',
     description='Python client for kubernetes container runtime interface (CRI)',
     author='Pengfei Ni',
     author_email="feiskyer@gmail.com",
