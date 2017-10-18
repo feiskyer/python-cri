@@ -3,8 +3,8 @@ from distutils.core import setup
 setup(
     name="cri",
     packages=['cri'],
-    scripts=['bin/cri'],
-    version='0.2.0',
+    scripts=[],
+    version='1.8.0',
     description='Python client for kubernetes container runtime interface (CRI)',
     author='Pengfei Ni',
     author_email="feiskyer@gmail.com",
@@ -28,4 +28,3 @@ setup(
         "Programming Language :: Python :: 3.5",
     ],
 )
-
