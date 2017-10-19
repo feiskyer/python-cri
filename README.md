@@ -11,7 +11,10 @@ See [CRI](https://github.com/kubernetes/community/blob/master/contributors/desig
 pip install cri==0.1.5
 
 # For kubernetes v1.7.x
-pip install cri
+pip install cri==0.2.0
+
+# For kubernetes v1.8.x
+pip install cri==1.8.1
 ```
 
 ## Usage
